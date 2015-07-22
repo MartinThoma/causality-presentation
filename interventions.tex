@@ -1,0 +1,112 @@
+\documentclass{beamer}
+\usetheme{Frankfurt}
+\usecolortheme{beaver}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc} % this is needed for german umlauts
+\usepackage[ngerman]{babel} % this is needed for german umlauts
+\usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+\usepackage{braket}         % needed for \Set
+\usepackage{enumitem}
+\usepackage{siunitx}        % this package is for units!
+\sisetup{range-phrase=--, range-units=single}
+
+\usepackage{booktabs}  % for \toprule, \midrule and \bottomrule
+\selectlanguage{ngerman}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning, calc}
+
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\begin{document}
+
+\title{Interventions}
+% \subtitle{A subtitle}
+\author{Martin Thoma}
+\date{X. August 2015}
+\subject{Causality}
+
+\frame{\titlepage}
+
+% Show table of contents
+\frame{
+    \frametitle{Inhalt}
+    \setcounter{tocdepth}{1}
+    \tableofcontents
+    \setcounter{tocdepth}{2}
+}
+
+%\AtBeginSection[]{
+%    \InsertToC[sections={\thesection}]  % shows only subsubsections of one subsection
+%}
+
+\section{Einführung}
+\subsection{Einführung}
+\begin{frame}{Nierensteine}
+    \begin{itemize}
+        \item Kristalline Ablagerungen
+        \item \SIrange{2}{4}{\milli\meter} unkritisch,
+              ab \SI{10}{\milli\meter} operative Entfernung
+        \item 2~Methoden des Entfernens:
+        \begin{itemize}
+            \item \textbf{A}: Offene Operation
+            \item \textbf{B}: PCNL (Percutaneous nephrolithotomy): Entfernung
+                  durch ca 1cm große Punktuierung der Haut
+        \end{itemize}
+    \end{itemize}
+
+    \uncover<2->{Was ist besser: A oder B?}\\
+    \uncover<3->{Ist die Entscheidung abhängig von der Größe?}\\
+\end{frame}
+
+
+\begin{frame}{Simpson-Paradoxon}
+\Wider{
+    \begin{table}
+        % \centering
+        \begin{tabular}{lrr}
+        \toprule
+        ~      & \multicolumn{2}{c}{\textbf{Behandlungserfolg}}  \\
+        \cmidrule{2-3}
+        ~                   & \multicolumn{1}{c}{\textbf{A}} & \multicolumn{1}{c}{\textbf{B}} \\ \midrule
+        Kleine Nierensteine & \textbf{93\%}  (\hphantom{0}81/\hphantom{0}87)  & 87\% (234/270) \\
+        Große Nierensteine  & \textbf{73\%} (192/263) & 69\% (\hphantom{0}55/\hphantom{0}80)\\
+        \textbf{Gesammt}    & 78\% (273/350)          & \textbf{83\%} (289/350) \\
+        \bottomrule
+        \end{tabular}
+        \caption{Nierensteine durch (A) offene Operation oder (B) PCNL entfernen.}
+        \label{table:countries}
+    \end{table}
+}
+    Quelle: Causality, 2015. Jonas Peters.
+\end{frame}
+
+\begin{frame}{Aufstellen eines SEM}
+    \begin{itemize}[label={}]
+        \item $Z \in \Set{\text{klein}, \text{groß}}$: Größe des Nierensteins
+        \item $T \in \Set{A, B}$: Behandlung (Treatment)
+        \item $R \in \Set{\text{erfolg}, \text{misserfolg}}$: Behandlungserfolg (Recovery)
+    \end{itemize}
+
+    Sei das wahre SEM:
+    \begin{figure}[!h]
+        \centering
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+      thick,main node/.style={circle,fill=blue!10,draw,font=\sffamily\Large\bfseries}]
+          \node (Z) at (1,1) {Z};
+          \node (T) at (0,0) {T};
+          \node (R) at (2,0) {R};
+
+          \foreach \from/\to in {Z/T,Z/R,T/R}
+            \draw (\from) -> (\to);
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\end{document}
