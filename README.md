@@ -2,7 +2,7 @@
 Dieses Repository ist für einen 30-minütigen Vortrag bei einer Sommerakademie.
 Das Thema lautet "Intervention distribution".
 
-Die kompilierte PDF kann hier herutergeladen werden.
+Die kompilierte PDF kann [hier](https://github.com/MartinThoma/causality-presentation/raw/master/interventions.pdf) herutergeladen werden.
 
 
 ## Given
@@ -14,3 +14,8 @@ Die kompilierte PDF kann hier herutergeladen werden.
 * Thema: interventions
 * Nr: 11
 * Zeit: 30min
+
+## Plan
+
+* Einleitung: ca. 5 min
+* Interventionsverteilung, def: ca. 2 min

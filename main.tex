@@ -1,0 +1,35 @@
+%!TEX root = interventions.tex
+\section{Interventions}
+\subsection{Definition}
+\begin{frame}{Interventionen}
+    \begin{block}{Interventionsverteilung}
+        Sei $\mathbb{P}^\mathbf{X}$ die zu einer SEM
+        $\mathcal{S} := (\mathcal{S}, \mathbb{P}^N)$ gehörende Verteilung. Dann
+        kann eine (oder mehr) Strukturgleichungen aus $\mathcal{S}$ entfernt
+        werden ohne einen Zyklus im Graphen zu erzeugen. Die Verteilung des
+        neuen SEM $\tilde{\mathcal{S}}$ heißt dann
+        \textit{Interventionsverteilung}.
+
+        Bei den Variablen, deren Strukturgleichungen ersetzt wurden, sagt man,
+        wurde \textit{interveniert}.
+
+        Die neue Verteilung wird mit
+        \[\mathbb{P}_{\tilde{\mathcal{S}}}^{\mathbf{X}} = \mathbb{P}_{\mathcal{S}}^{\mathbf{X}| do(X_j=\tilde{f}(\tilde{\mathbf{PA}}_j, \tilde{N}_j))}\]
+        beschrieben.
+
+        Die Menge der Rauschvariablen in $\mathcal{S}$ beinhaltet nun einige
+        \enquote{neue} und einige \enquote{alte} $N$'s. $\mathcal{S}$ muss
+        paarweise unabhängig sein.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Nierensteine}
+\begin{columns}
+    \begin{column}{0.45\textwidth}
+        \begin{center}\textbf{Modell A}\end{center}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+        \begin{center}\textbf{Modell B}\end{center}
+    \end{column}
+\end{columns}
+\end{frame}
