@@ -52,7 +52,7 @@
         \end{align}
         \onslide<9->{$\Rightarrow$ Intervention auf $X$ beeinflusst die Verteilung von $Y$.}
     }
-    \only<10->{
+    \only<10-13>{
         Aber:
 
         \begin{align}
@@ -62,36 +62,66 @@
             \onslide<13->{&\neq \mathbb{P}_\mathcal{S}^{X|Y=2}}
         \end{align}
     }
+    \only<14->{\\
+        Beispiel: $X$ (rauchen) $\rightarrow Y$ (weiße Zähne)
+        \begin{itemize}
+            \item<15-> Es besteht eine Asymmetrie zwischen Ursache ($X$) und Effekt ($Y$).
+            \item<16-> $\mathbb{P}_\mathcal{S}^{X,Y|do(Y=\tilde{N}_Y)} \Rightarrow X \perp\!\!\!\perp Y$
+            \item<17-> $\mathbb{P}_\mathcal{S}^{X,Y|do(X=\tilde{N}_X)} \text{ und } Var(\tilde{N}_X) > 0 \Rightarrow X \not\perp\!\!\!\perp Y$
+        \end{itemize}
+    }
 \end{frame}
 
-\begin{frame}{Beispiel 2.2.2: Ursache und Effekt}
-    Beispiel: $X$ (rauchen) $\rightarrow Y$ (weiße Zähne)
-    \begin{itemize}
-        \item<2-> Es besteht eine Asymmetrie zwischen Ursache ($X$) und Effekt ($Y$).
-        \item<3-> $\mathbb{P}_\mathcal{S}^{X,Y|do(Y=\tilde{N}_Y)} \Rightarrow X \perp\!\!\!\perp Y$
-        \item<4-> $\mathbb{P}_\mathcal{S}^{X,Y|do(X=\tilde{N}_X)} \text{ und } Var(\tilde{N}_X) > 0 \Rightarrow X \not\perp\!\!\!\perp Y$
-    \end{itemize}
-\end{frame}
-
-
+\section{Totaler kausaler Effekt}
+\subsection{Totaler kausaler Effekt}
 \begin{frame}{Totaler kausaler Effekt}
     \begin{block}{Totaler kausaler Effekt}
         Gegeben sei ein SEM $\mathcal{S}$. Dann gibt es einen
         (totalen) kausalen Effekt von $X$ nach $Y$ genau dann wenn
-        \[X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}\]
-        für eine Variable $\tilde{N}_X$ gilt.
+        \[\exists \tilde{N}_: X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}\]
+        gilt.
     \end{block}
 \end{frame}
 
-\begin{frame}{Totaler kausaler Effekt}
+\begin{frame}[t]{Totaler kausaler Effekt: Äquivalenzen}
     Folgende Aussagen sind äquivalent:
 
     \begin{enumerate}[label=(\roman*)]
-        \item Es gibt einen kausalen Effekt von $X$ nach $Y$.
-        \item Es gibt $x^\triangle$ und $x^\square$ sodass $\mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^{Y|do(X=x^\square)}$
-        \item Es gibt $x^\triangle$ sodass $\mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^Y$.
-        \item $X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}$ für beliebige $\tilde{N}_X$ die vollen Support (TODO) haben.
+        \item $\exists \tilde{N}_X \hphantom{\text{ mit vollem Support }}: X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}$
+        \item $\exists x^\triangle \exists x^\square: \mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^{Y|do(X=x^\square)}$
+        \item $\exists x^\triangle \hphantom{\exists x^\square}: \mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^Y$.
+        \item $\forall \tilde{N}_X \text{ mit vollem Support }: X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}$
     \end{enumerate}
+
+    \only<2>{
+    \textbf{Beweisplan:}\\
+    (i) $\Rightarrow$ (ii) $\Rightarrow$ (iv) $\Rightarrow$ (i)\\
+    $\neg$(i) $\Rightarrow$ $\neg$ (iii) äquivalent zu (iii) $\Rightarrow$ (i)\\
+    (ii) $\Rightarrow$ (iii)
+    }
+    \only<3-5>{
+        \textbf{Beweisplan:} (i) $\Rightarrow$ (ii)\\
+        \onslide<4->{(i) $\overset{A.2}{\Rightarrow} \exists x_1^\triangle, x_1^\square$ mit
+        pos. Dichte unter $\tilde{N_1}$ sodass $\mathbb{P}_\mathcal{S}^{X_2|X_1=x_1^\triangle, do(X_1=\tilde{N_1})} \neq \mathbb{P}_\mathcal{S}^{X_2 | X_1=x^\square, do(X_1=\tilde{N_1})}$\\}
+        \onslide<5->{$\overset{A.1}{\Rightarrow} (ii)$}
+    }
+    \only<6>{
+        \textbf{Beweisplan:} (ii) $\Rightarrow$ (iv)\\
+        \onslide<7->{(ii) $\overset{A.1}{\Rightarrow} \exists x_1^\triangle, x_1^\square$ mit pos. Dichte unter $\hat{N_1}$ sodass $\mathcal{P}_\mathcal{S}^{X_2|X_1=x_1^\triangle, do(X_1=\hat{N_1})} \neq \mathbb{P}_\mathcal{S}^{X_2 | X_1 = x_1^\square, do(X_1 = \hat{N_1})}$}
+        \onslide<8->{$\overset{A.2}{\Rightarrow} (iv)$}
+    }
+    \only<9>{
+        \textbf{Beweisplan:} (iv) $\Rightarrow$ (i)\\
+        Trivial
+    }
+    \only<10>{
+        \textbf{Beweisplan:} $\neg$(i) $\Rightarrow$ $\neg$ (iii)\\
+        \onslide<11->{Es gilt: $\mathbb{P}_\mathcal{S}^{X_2} = \mathbb{P}_\mathcal{S}^{X_2 | do(X_1 = N_1^*)}$, wobei $N_1^*$ wie $\mathbb{P}_\mathcal{S}^{X_2}$ verteilt ist.}
+    }
+    \only<11>{
+        \textbf{Beweisplan:} (ii) $\Rightarrow$ (iii)\\
+        Trivial (TODO: wirklich?)
+    }
 \end{frame}
 
 \begin{frame}{Beispiel 2.2.6: Randomisierte Studie}
@@ -125,12 +155,26 @@
 \end{frame}
 
 \begin{frame}{Proposition 2.2.9}
-    \begin{itemize}
+    \begin{enumerate}[label=(\roman*)]
         \item<1-> Falls es keinen gerichteten Pfad von $X$ nach $Y$ gibt, dann
                   gibt es keinen kausalen Effekt.
         \item<2-> Manchmal gibt es einen gerichteten Pfad, aber keinen kausalen
                   Effekt.
-    \end{itemize}
+    \end{enumerate}
+
+    \onslide<3->{Beweis von (i): Folgt aus der Markov-Eigenschaft des
+                 interventierten SEMs. }\onslide<4->{Nach dem Entfernen der
+                 in $X$ eingehenden Kanten gilt: $X$ und $Y$ sind
+                 $d$-separiert, falls es keinen direkten Pfad von $X$ nach
+                 $Y$ gibt. \\}
+    \onslide<5->{Beweis von (ii) durch Gegenbeispiel: Sei
+    \begin{align}
+        X &= N_X\\
+        Z &= 2X + N_Z\\
+        Y &= 4X - 2Z + N_Y
+    \end{align}
+    Dann gilt: $Y = - 2N_Z + N_Y$ und daher $X \perp\!\!\!\perp$ für alle $N_X$. $\square$
+    }
 \end{frame}
 
 % \begin{frame}{Nierensteine}
