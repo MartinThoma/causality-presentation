@@ -16,6 +16,7 @@
 \usepackage{amsmath, amssymb}
 \usepackage{bm}
 \usepackage{dsfont}
+\usepackage{nicefrac}
 \usepackage{siunitx}        % this package is for units!
 \sisetup{range-phrase=--, range-units=single}
 
@@ -26,6 +27,12 @@
 \usetikzlibrary{arrows,positioning, calc}
 
 \setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
 \makeatletter
 \setbeamertemplate{footline}
 {%

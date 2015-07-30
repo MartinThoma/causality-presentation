@@ -23,13 +23,101 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Nierensteine}
-\begin{columns}
-    \begin{column}{0.45\textwidth}
-        \begin{center}\textbf{Modell A}\end{center}
-    \end{column}
-    \begin{column}{0.45\textwidth}
-        \begin{center}\textbf{Modell B}\end{center}
-    \end{column}
-\end{columns}
+\begin{frame}[t]{Beispiel 2.2.2: Ursache und Effekt}
+    Es sei $\mathcal{S}$ gegeben durch
+    \begin{align}
+        X &= N_X\\
+        Y &= 4 \cdot X + N_Y
+    \end{align}
+    mit $N_X, N_Y \overset{\text{iid}}{\sim} \mathcal{N}(0, 1)$ und den
+    Graphen $X \rightarrow Y$.
+    \only<2-9>{
+        Dann gilt:
+        \begin{align}
+            \mathbb{P}_\mathcal{S}^Y = \mathcal{N}(0, 4^2 + 1) &\onslide<3->{\neq \mathcal{N}(8, 1)} \onslide<4->{= \mathbb{P}_\mathcal{S}^{Y|do(X=2)}} \onslide<5->{= \mathbb{P}_\mathcal{S}^{Y|X=2}}\\
+            &\onslide<6->{\neq \mathcal{N}(12, 1)} \onslide<7->{= \mathbb{P}_\mathcal{S}^{Y|do(X=3)}} \onslide<8->{= \mathbb{P}_\mathcal{S}^{Y|X=3}}
+        \end{align}
+        \onslide<9->{$\Rightarrow$ Intervention auf $X$ beeinflusst die Verteilung von $Y$.}
+    }
+    \only<10->{
+        Aber:
+
+        \begin{align}
+            \mathbb{P}_\mathcal{S}^{X|do(Y=2)} &= \mathcal{N}(0, 1)\\
+            \onslide<11->{&= \mathbb{P}_\mathcal{S}^X}\\
+            \onslide<12->{&= \mathbb{P}_\mathcal{S}^{X|do(Y=3.14159)}}\\
+            \onslide<13->{&\neq \mathbb{P}_\mathcal{S}^{X|Y=2}}
+        \end{align}
+    }
 \end{frame}
+
+
+\begin{frame}{Totaler kausaler Effekt}
+    \begin{block}{Totaler kausaler Effekt}
+        Gegeben sei ein SEM $\mathcal{S}$. Dann gibt es einen
+        (totalen) kausalen Effekt von $X$ nach $Y$ genau dann wenn
+        \[X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}\]
+        für eine Variable $\tilde{N}_X$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Totaler kausaler Effekt}
+    Folgende Aussagen sind äquivalent:
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Es gibt einen kausalen Effekt von $X$ nach $Y$.
+        \item Es gibt $x^\triangle$ und $x^\square$ sodass $\mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^{Y|do(X=x^\square)}$
+        \item Es gibt $x^\triangle$ sodass $\mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^Y$.
+        \item $X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}$ für beliebige $\tilde{N}_X$ die vollen Support (TODO) haben.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Beispiel 2.2.6: Randomisierte Studie}
+    \begin{itemize}
+        \item Weise eine Behandlung $T$ zufällig (nach $\tilde{N_T}$) einem
+              Patienten zu. Das könnte auch ein Placebo sein.
+        \item Im SEM: Daten aus $\mathbb{P}_\mathcal{S}^{\mathbf{X}|do(T=\tilde{N_T})}$
+        \item Falls immer noch Abhängigkeit zw. Behandlung und Erfolg vorliegt
+              $\Rightarrow T$ hat einen totalen kausalen Effekt auf den
+              Behandlungserfolg.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiel 2.2.7: Nicolai's running-and-health Beispiel}
+    Das zugrundeliegende (\enquote{wahre}) SEM $\mathcal{S}$, welches die Daten
+    generierte, hat die Form:
+
+    \begin{align}
+        A &= N_A            &&\text{mit } N_A \sim Ber(\nicefrac{1}{2})\\
+        H &= A + N_H \mod 2 &&\text{mit } N_H \sim Ber(\nicefrac{1}{3})\\
+        B &= H + N_B \mod 2 &&\text{mit } N_B \sim Ber(\nicefrac{1}{20})
+    \end{align}
+
+    mit dem Graphen $A \rightarrow H \rightarrow B$ und\\
+    $N_A, N_H, N_B$ unabhängig.
+
+    \begin{itemize}
+        \item<1->  $B$ ist hilfreicher für die Vorhersage von $H$ als $A$.
+        \item<2->  Intervention von $A$ hat auf $H$ einen größeren Einfluss als Intervention von $B$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Proposition 2.2.9}
+    \begin{itemize}
+        \item<1-> Falls es keinen gerichteten Pfad von $X$ nach $Y$ gibt, dann
+                  gibt es keinen kausalen Effekt (TODO: Kausaler Zusammenhang?)
+        \item<2-> Manchmal gibt es einen gerichteten Pfad, aber keinen kausalen
+                  Zusammenhang.
+    \end{itemize}
+\end{frame}
+
+% \begin{frame}{Nierensteine}
+% \begin{columns}
+%     \begin{column}{0.45\textwidth}
+%         \begin{center}\textbf{Modell A}\end{center}
+%     \end{column}
+%     \begin{column}{0.45\textwidth}
+%         \begin{center}\textbf{Modell B}\end{center}
+%     \end{column}
+% \end{columns}
+% \end{frame}
