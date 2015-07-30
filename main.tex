@@ -23,6 +23,19 @@
     \end{block}
 \end{frame}
 
+% \begin{frame}{Interventionen: Spezialfälle}
+%     \begin{block}{Interventionsverteilung}
+%         Wenn $\tilde{f}(\tilde{\mathbf{PA}_j}, \tilde{N}_j)$ eine Punktmasse
+%         auf ein $a \in \mathbb{R}$ legt schreibt man
+%         \[\mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X_j = \tilde{f}(\tilde{\mathbf{PA}_j}, \tilde{N}_j))}\]
+%         und nennt die Intervention
+%         \textbf{perfekt}.\\
+
+%         Eine Intervention mit $\tilde{\mathbf{PA}_j} = \mathbf{PA}_j$ wird
+%         \textbf{mangelhaft} genannt.
+%     \end{block}
+% \end{frame}
+
 \begin{frame}[t]{Beispiel 2.2.2: Ursache und Effekt}
     Es sei $\mathcal{S}$ gegeben durch
     \begin{align}
@@ -51,13 +64,22 @@
     }
 \end{frame}
 
+\begin{frame}{Beispiel 2.2.2: Ursache und Effekt}
+    Beispiel: $X$ (rauchen) $\rightarrow Y$ (weiße Zähne)
+    \begin{itemize}
+        \item<2-> Es besteht eine Asymmetrie zwischen Ursache ($X$) und Effekt ($Y$).
+        \item<3-> $\mathbb{P}_\mathcal{S}^{X,Y|do(Y=\tilde{N}_Y)} \Rightarrow X \perp\!\!\!\perp Y$
+        \item<4-> $\mathbb{P}_\mathcal{S}^{X,Y|do(X=\tilde{N}_X)} \text{ und } Var(\tilde{N}_X) > 0 \Rightarrow X \not\perp\!\!\!\perp Y$
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}{Totaler kausaler Effekt}
     \begin{block}{Totaler kausaler Effekt}
         Gegeben sei ein SEM $\mathcal{S}$. Dann gibt es einen
         (totalen) kausalen Effekt von $X$ nach $Y$ genau dann wenn
         \[X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}\]
-        für eine Variable $\tilde{N}_X$.
+        für eine Variable $\tilde{N}_X$ gilt.
     \end{block}
 \end{frame}
 
@@ -72,14 +94,14 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}[t]{Beispiel 2.2.6: Randomisierte Studie}
+\begin{frame}{Beispiel 2.2.6: Randomisierte Studie}
     \begin{itemize}
-        \item Weise eine Behandlung $T$ zufällig (nach $\tilde{N_T}$) einem
+        \item<1-> Weise eine Behandlung $T$ zufällig (nach $\tilde{N_T}$) einem
               Patienten zu. Das könnte auch ein Placebo sein.
-        \item Im SEM: Daten aus $\mathbb{P}_\mathcal{S}^{\mathbf{X}|do(T=\tilde{N_T})}$
-        \item Falls immer noch Abhängigkeit zw. Behandlung und Erfolg vorliegt
-              $\Rightarrow T$ hat einen totalen kausalen Effekt auf den
-              Behandlungserfolg.
+        \item<2-> Im SEM: Daten aus $\mathbb{P}_\mathcal{S}^{\mathbf{X}|do(T=\tilde{N_T})}$
+        \item<3-> Falls immer noch Abhängigkeit zw. Behandlung und Erfolg
+              vorliegt $\Rightarrow T$ hat einen totalen kausalen Effekt auf
+              den Behandlungserfolg.
     \end{itemize}
 \end{frame}
 
@@ -105,9 +127,9 @@
 \begin{frame}{Proposition 2.2.9}
     \begin{itemize}
         \item<1-> Falls es keinen gerichteten Pfad von $X$ nach $Y$ gibt, dann
-                  gibt es keinen kausalen Effekt (TODO: Kausaler Zusammenhang?)
+                  gibt es keinen kausalen Effekt.
         \item<2-> Manchmal gibt es einen gerichteten Pfad, aber keinen kausalen
-                  Zusammenhang.
+                  Effekt.
     \end{itemize}
 \end{frame}
 
