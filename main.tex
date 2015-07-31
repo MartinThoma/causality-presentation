@@ -4,22 +4,22 @@
 \begin{frame}{Interventionen}
     \begin{block}{Interventionsverteilung}
         Sei $\mathbb{P}^\mathbf{X}$ die zu einer SEM
-        $\mathcal{S} := (\mathcal{S}, \mathbb{P}^N)$ gehörende Verteilung. Dann
-        kann eine (oder mehr) Strukturgleichungen aus $\mathcal{S}$ entfernt
-        werden ohne einen Zyklus im Graphen zu erzeugen. Die Verteilung des
+        $\mathcal{S} := (\mathcal{S}, \mathbb{P}^N)$ gehörende Verteilung. \onslide<2->{Dann
+                kann eine (oder mehr) Strukturgleichungen aus $\mathcal{S}$ ersetzt
+                werden ohne einen Zyklus im Graphen zu erzeugen.} \onslide<3->{Die Verteilung des
         neuen SEM $\tilde{\mathcal{S}}$ heißt dann
-        \textit{Interventionsverteilung}.
+        \textit{Interventionsverteilung}.}
 
-        Bei den Variablen, deren Strukturgleichungen ersetzt wurden, sagt man,
-        wurde \textit{interveniert}.
+        \onslide<4->{Bei den Variablen, deren Strukturgleichungen ersetzt wurden, sagt man,
+        wurde \textit{interveniert}.}
 
-        Die neue Verteilung wird mit
+        \onslide<5->{Die neue Verteilung wird mit
         \[\mathbb{P}_{\tilde{\mathcal{S}}}^{\mathbf{X}} = \mathbb{P}_{\mathcal{S}}^{\mathbf{X}| do(X_j=\tilde{f}(\tilde{\mathbf{PA}}_j, \tilde{N}_j))}\]
-        beschrieben.
+        beschrieben.}
 
-        Die Menge der Rauschvariablen in $\mathcal{S}$ beinhaltet nun einige
+        \onslide<6->{Die Menge der Rauschvariablen in $\mathcal{S}$ beinhaltet nun einige
         \enquote{neue} und einige \enquote{alte} $N$'s. $\mathcal{S}$ muss
-        paarweise unabhängig sein.
+        paarweise unabhängig sein.}
     \end{block}
 \end{frame}
 
@@ -78,7 +78,7 @@
     \begin{block}{Totaler kausaler Effekt}
         Gegeben sei ein SEM $\mathcal{S}$. Dann gibt es einen
         (totalen) kausalen Effekt von $X$ nach $Y$ genau dann wenn
-        \[\exists \tilde{N}_: X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}\]
+        \[\exists \tilde{N}_X : X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}\]
         gilt.
     \end{block}
 \end{frame}
@@ -87,10 +87,10 @@
     Folgende Aussagen sind äquivalent:
 
     \begin{enumerate}[label=(\roman*)]
-        \item $\exists \tilde{N}_X \hphantom{\text{ mit vollem Support }}: X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}$
-        \item $\exists x^\triangle \exists x^\square: \mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^{Y|do(X=x^\square)}$
-        \item $\exists x^\triangle \hphantom{\exists x^\square}: \mathbb{P}_\mathcal{S}^{Y|do(X=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^Y$.
-        \item $\forall \tilde{N}_X \text{ mit vollem Support }: X \not\!\perp\!\!\!\perp Y \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X=\tilde{N}_X)}$
+        \item $\exists \tilde{N}_{X_1} \hphantom{\text{ mit vollem Support }}: X_1 \not\!\perp\!\!\!\perp X_2 \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X_1=\tilde{N}_{X_1})}$
+        \item $\exists x^\triangle \exists x^\square: \mathbb{P}_\mathcal{S}^{X_2|do(X_1=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^{X_2|do(X_1=x^\square)}$
+        \item $\exists x^\triangle \hphantom{\exists x^\square}: \mathbb{P}_\mathcal{S}^{X_2|do(X_1=x^\triangle)} \neq \mathbb{P}_\mathcal{S}^{X_2}$.
+        \item $\forall \tilde{N}_{X_1} \text{ mit vollem Support }: X_1 \not\!\perp\!\!\!\perp X_2 \text{ in } \mathbb{P}_\mathcal{S}^{\mathbf{X}|do(X_1=\tilde{N}_{X_1})}$
     \end{enumerate}
 
     \only<2>{
@@ -100,25 +100,57 @@
     (ii) $\Rightarrow$ (iii)
     }
     \only<3-5>{
-        \textbf{Beweisplan:} (i) $\Rightarrow$ (ii)\\
-        \onslide<4->{(i) $\overset{A.2}{\Rightarrow} \exists x_1^\triangle, x_1^\square$ mit
-        pos. Dichte unter $\tilde{N_1}$ sodass $\mathbb{P}_\mathcal{S}^{X_2|X_1=x_1^\triangle, do(X_1=\tilde{N_1})} \neq \mathbb{P}_\mathcal{S}^{X_2 | X_1=x^\square, do(X_1=\tilde{N_1})}$\\}
-        \onslide<5->{$\overset{A.1}{\Rightarrow} (ii)$}
+        \begin{align}
+            p_\mathcal{S}^{X_2|do(X_1=x_1)}(x_2) &= \int \prod_{j \neq 1} p_j(x_j|x_{pa(j)}) \mathrm{d}x_3 \dots \mathrm{d}x_p \nonumber
+            \only<4->{\\&= \int \prod_{j \neq 1} p_j(x_j|x_{pa(j)}) \frac{\tilde{p}(x_1)}{\tilde{p}(x_1)}\mathrm{d}x_3 \dots \mathrm{d}x_p \nonumber}
+            \only<5->{\\&= p_\mathcal{S}^{X_2 | X_1=x_1, do(X_1=\tilde{N}_1)}(x_2)\tag{A.1}\label{eq:A.1}}
+        \end{align}
+        \only<5->{mit $\tilde{p}(x_1) > 0$.}
     }
     \only<6>{
-        \textbf{Beweisplan:} (ii) $\Rightarrow$ (iv)\\
-        \onslide<7->{(ii) $\overset{A.1}{\Rightarrow} \exists x_1^\triangle, x_1^\square$ mit pos. Dichte unter $\hat{N_1}$ sodass $\mathcal{P}_\mathcal{S}^{X_2|X_1=x_1^\triangle, do(X_1=\hat{N_1})} \neq \mathbb{P}_\mathcal{S}^{X_2 | X_1 = x_1^\square, do(X_1 = \hat{N_1})}$}
-        \onslide<8->{$\overset{A.2}{\Rightarrow} (iv)$}
+        \begin{align}
+            X_2 \not\perp\!\!\!\perp X_1 \text{ in } \mathbb{Q} \Leftrightarrow &\exists x_1^\triangle, x_1^\square \nonumber\\
+            &\text{mit } q(x_1^\triangle), q(x_1^\square) > 0\nonumber\\
+            &\text{und } \mathbb{Q}^{X_2|X_1=x_1^\triangle} \neq \mathbb{Q}^{X_2 | X_1=x_1^\square}\tag{A.2}\label{eq:A.2}
+        \end{align}
     }
-    \only<9>{
+
+    \only<7>{
+        \begin{align}
+            X_2 \not\perp\!\!\!\perp X_1 \text{ in } \mathbb{Q} \Leftrightarrow &\exists x_1^\triangle \nonumber\\
+            &\text{mit } q(x_1^\triangle) > 0\nonumber\\
+            &\text{und } \mathbb{Q}^{X_2|X_1=x_1^\triangle} \neq \mathbb{Q}^{X_2}\tag{A.3}\label{eq:A.3}
+        \end{align}
+    }
+
+    \only<8-10>{
+        \textbf{Beweisplan:} (i) $\Rightarrow$ (ii)\\
+        \onslide<9->{(i) $\overset{A.2}{\Rightarrow} \exists x_1^\triangle, x_1^\square$ mit
+        pos. Dichte unter $\tilde{N_1}$ sodass $\mathbb{P}_\mathcal{S}^{X_2|X_1=x_1^\triangle, do(X_1=\tilde{N_1})} \neq \mathbb{P}_\mathcal{S}^{X_2 | X_1=x^\square, do(X_1=\tilde{N_1})}$\\}
+        \onslide<10->{$\overset{A.1}{\Rightarrow} (ii)$}
+    }
+    \only<11-13>{
+        \textbf{Beweisplan:} (ii) $\Rightarrow$ (iv)\\
+        \onslide<12->{(ii) $\overset{A.1}{\Rightarrow} \exists x_1^\triangle, x_1^\square$ mit pos. Dichte unter $\hat{N_1}$ sodass $\mathbb{P}_\mathcal{S}^{X_2|X_1=x_1^\triangle, do(X_1=\hat{N_1})} \neq \mathbb{P}_\mathcal{S}^{X_2 | X_1 = x_1^\square, do(X_1 = \hat{N_1})}$}
+        \onslide<13->{$\overset{A.2}{\Rightarrow} (iv)$}
+    }
+    \only<14>{
         \textbf{Beweisplan:} (iv) $\Rightarrow$ (i)\\
         Trivial
     }
-    \only<10>{
+    \only<15-17>{
         \textbf{Beweisplan:} $\neg$(i) $\Rightarrow$ $\neg$ (iii)\\
-        \onslide<11->{Es gilt: $\mathbb{P}_\mathcal{S}^{X_2} = \mathbb{P}_\mathcal{S}^{X_2 | do(X_1 = N_1^*)}$, wobei $N_1^*$ wie $\mathbb{P}_\mathcal{S}^{X_2}$ verteilt ist.}
+        \onslide<16->{Es gilt: $\mathbb{P}_\mathcal{S}^{X_2} = \mathbb{P}_\mathcal{S}^{X_2 | do(X_1 = N_1^*)}$, wobei $N_1^*$ wie $\mathbb{P}_\mathcal{S}^{X_2}$ verteilt ist.\\}
+        \onslide<17->{
+            \begin{align}
+                \neg (i) &\Rightarrow X_2 \perp\!\!\!\perp X_1 \text{ in } \mathbb{P}_\mathcal{S}^{\textbf{X}|do(X_1 = N_1^*)}\\
+                &\overset{A.3}{\Rightarrow} \mathbb{P}_\mathcal{S}^{X_2| X_1=x^\triangle | do(X_1=N_1^*)} = \mathbb{P}_\mathcal{S}^{X_2 | do(X_1 = N_1^*)} \;\;\;\forall x^\triangle \text{ mit } p_1(x^\triangle) > 0\\
+                &\overset{A.1}{\Rightarrow} \mathbb{P}_\mathcal{S}^{X_2 | do(X_1=x^\triangle)} = \mathbb{P}_\mathcal{S}^{X_2} \;\;\; \forall x^\triangle \text{ mit } p_1(x^\triangle) > 0\\
+                &\overset{\neg (ii)}{\Rightarrow} \neg (iii)
+            \end{align}
+        }
     }
-    \only<11>{
+    \only<18>{
         \textbf{Beweisplan:} (ii) $\Rightarrow$ (iii)\\
         Trivial (TODO: wirklich?)
     }

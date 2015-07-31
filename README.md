@@ -19,3 +19,10 @@ Die kompilierte PDF kann [hier](https://github.com/MartinThoma/causality-present
 
 * Einleitung: ca. 5 min
 * Interventionsverteilung, def: ca. 2 min
+
+## Fragen
+
+1. Definition 2.2.1: "The set of noise variables in S now contains both ..."
+    - Soll hier wirklich "S" und nicht "\tilde{S}" stehen?
+2. Was heißt "full support"?
+3. A.2: Was ist Q?
