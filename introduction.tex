@@ -39,21 +39,6 @@
     % Quelle: Causality, 2015. Jonas Peters.  -- ist für den gesamten Vortrag die Quelle...
 \end{frame}
 
-\subsection{SEMs}
-\begin{frame}{SEMs}
-    \begin{block}{Structural Equaltion Model (kurz: SEM)}
-        Ein \textit{Struckturgleichungsmodel} ist ein Tupel
-        $\mathcal{S} := (\mathcal{S}, \mathbb{P}^\mathbf{N})$, wobei
-        $\mathcal{S} = (S_1, \dots, S_p)$ ein Tupel aus $p$ Gleichungen
-        \[S_j : X_j = f_j(\mathbf{PA}_j, N_j), \;\;\; j=1, \dots, p\]
-        ist und $\mathbf{PA}_j \subseteq \Set{X_1, \dots, X_p} \setminus \Set{X_j}$
-        die \textit{Eltern von $X_j$} und $\mathbb{P}^\mathbf{N} = \mathbb{P}^{N_1, \dots, N_p}$
-        die gemeinsame Verteilung der Rauschvariablen ist. Diese müssen
-        von einander unabhängig sein, $\mathbb{P}^\mathbf{N}$ muss also eine
-        Produktverteilung sein.
-    \end{block}
-\end{frame}
-
 \begin{frame}{Aufstellen eines SEM}
     \begin{itemize}[label={}]
         \item $Z \in \Set{\text{klein}, \text{groß}}$: Größe des Nierensteins
@@ -61,7 +46,7 @@
         \item $R \in \Set{\text{erfolg}, \text{misserfolg}}$: Behandlungserfolg (Recovery)
     \end{itemize}
 
-    Sei das wahre SEM:
+    Sei das \enquote{wahre} SEM:
     \begin{figure}[!h]
         \centering
         \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
@@ -74,4 +59,38 @@
             \draw (\from) -> (\to);
         \end{tikzpicture}
     \end{figure}
+\end{frame}
+
+\begin{frame}{Nieren-Beispiel}
+    \begin{table}
+        \begin{tabular}{lrr}
+        \toprule
+        ~      & \multicolumn{2}{c}{\textbf{Behandlungserfolg}}  \\
+        \cmidrule{2-3}
+        ~                   & \multicolumn{1}{c}{\textbf{A}} & \multicolumn{1}{c}{\textbf{B}} \\ \midrule
+        Kleine Nierensteine & \textbf{93\%}  (\hphantom{0}81/\hphantom{0}87)  & 87\% (234/270) \\
+        Große Nierensteine  & \textbf{73\%} (192/263) & 69\% (\hphantom{0}55/\hphantom{0}80)\\
+        \textbf{Gesamt}     & 78\% (273/350)          & \textbf{83\%} (289/350) \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \begin{figure}[!h]
+        \centering
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+      thick,main node/.style={circle,fill=blue!10,draw,font=\sffamily\Large\bfseries}]
+          \node (Z) at (1,1) {Z};
+          \node (T) at (0,0) {T};
+          \node (R) at (2,0) {R};
+
+          \foreach \from/\to in {Z/T,Z/R,T/R}
+            \draw (\from) -> (\to);
+        \end{tikzpicture}
+    \end{figure}
+
+    % \begin{align*}
+    %     Z &= N_Z, \;\;\;& N_Z &\sim Ber(\nicefrac{1}{4})\\
+    %     T &= \lfloor 2 \cdot (1-Z+N_T) \rfloor \;\;\; & N_T &\sim \mathcal{N}(0, 1)\\
+    %     R &= \lfloor 2 \cdot (0.6 \cdot (1-Z) + 0.4 \cdot (1-T) + N_R) \rfloor  \;\;\; & N_R &\sim \mathcal{N}(0, 1)
+    % \end{align*}
 \end{frame}
