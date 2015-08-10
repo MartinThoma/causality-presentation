@@ -1,6 +1,16 @@
 %!TEX root = interventions.tex
 \section{Interventions}
 \subsection{Definition}
+\begin{frame}[t]{Nieren-Beispiel}
+    \begin{align*}
+        \mathbb{P}_{\mathcal{S}_A}(R=1) &= \sum_{z=0}^1 \mathbb{P}_{\mathcal{S}_A}(R=1, T=A, Z=z)
+        \onslide<2->{\\&= \sum_{z=0}^1 \mathbb{P}_{\mathcal{S}_A}(R=1 | T=A, Z=z) \mathbb{P}_{\mathcal{S}_A}(T=A, Z=z)}
+        \onslide<3->{\\&= \sum_{z=0}^1 \mathbb{P}_{\mathcal{S}_A}(R=1 | T=A, Z=z) \mathbb{P}_{\mathcal{S}_A}(Z=z)}
+        \onslide<4->{\\&= 0.93 \cdot \frac{357}{700} + 0.73 \cdot \frac{343}{700} = 0.832}
+        \onslide<5->{\\\mathbb{P}_{\mathcal{S}_B}(R=1)&= 0.87 \cdot \frac{357}{700} + 0.69 \cdot \frac{343}{700} = 0.782}
+    \end{align*}
+\end{frame}
+
 \begin{frame}{Interventionen}
     \begin{block}{Interventionsverteilung}
         Sei $\mathbb{P}^\mathbf{X}$ die zu einer SEM
@@ -23,31 +33,6 @@
     \end{block}
 \end{frame}
 
-
-
-\begin{frame}[t]{Nieren-Beispiel}
-    \begin{align*}
-        \mathbb{P}_{\mathcal{S}_A}(R=1) &= \sum_{z=0}^1 \mathbb{P}_{\mathcal{S}_A}(R=1, T=A, Z=z)
-        \onslide<2->{\\&= \sum_{z=0}^1 \mathbb{P}_{\mathcal{S}_A}(R=1 | T=A, Z=z) \mathbb{P}_{\mathcal{S}_A}(T=A, Z=z)}
-        \onslide<3->{\\&= \sum_{z=0}^1 \mathbb{P}_{\mathcal{S}_A}(R=1 | T=A, Z=z) \mathbb{P}_{\mathcal{S}_A}(Z=z)}
-        \onslide<4->{\\&= 0.93 \cdot \frac{357}{700} + 0.73 \cdot \frac{343}{700} = 0.832}
-        \onslide<5->{\\\mathbb{P}_{\mathcal{S}_B}(R=1)&= 0.87 \cdot \frac{357}{700} + 0.69 \cdot \frac{343}{700} = 0.782}
-    \end{align*}
-\end{frame}
-
-% \begin{frame}{Interventionen: Spezialfälle}
-%     \begin{block}{Interventionsverteilung}
-%         Wenn $\tilde{f}(\tilde{\mathbf{PA}_j}, \tilde{N}_j)$ eine Punktmasse
-%         auf ein $a \in \mathbb{R}$ legt schreibt man
-%         \[\mathbb{P}_\mathcal{S, do(X_j := \tilde{f}(\tilde{\mathbf{PA}_j}, \tilde{N}_j))}^{\mathbf{X}}\]
-%         und nennt die Intervention
-%         \textbf{perfekt}.\\
-
-%         Eine Intervention mit $\tilde{\mathbf{PA}_j} = \mathbf{PA}_j$ wird
-%         \textbf{mangelhaft} genannt.
-%     \end{block}
-% \end{frame}
-
 \begin{frame}[t]{Beispiel 2.2.2: Ursache und Effekt}
     Es sei $\mathcal{S}$ gegeben durch
     \begin{align}
@@ -68,10 +53,10 @@
         Aber:
 
         \begin{align}
-            \mathbb{P}_{\mathcal{S}, do(Y:=2)}^{X} &= \mathcal{N}(0, 1)
-            \onslide<11->{\\&= \mathbb{P}_\mathcal{S}^X}
-            \onslide<12->{\\&= \mathbb{P}_{\mathcal{S}, do(Y:=3.14159)}^{X}}
-            \onslide<13->{\\&\neq \mathbb{P}_\mathcal{S}^{X|Y=2}}
+            \mathbb{P}_{\mathcal{S}, do(Y:=2)}^{X} &= \mathcal{N}(0, 1)\\
+            \onslide<11->{&= \mathbb{P}_\mathcal{S}^X\\}
+            \onslide<12->{&= \mathbb{P}_{\mathcal{S}, do(Y:=3.14159)}^{X}\\}
+            \onslide<13->{&\neq \mathbb{P}_\mathcal{S}^{X|Y=2}}
         \end{align}
     }
     \only<14->{\\
@@ -87,7 +72,9 @@
 \section{Totaler kausaler Effekt}
 \subsection{Totaler kausaler Effekt}
 \begin{frame}{}{}
-    {\Large Intuition?}
+    \begin{center}
+       {\Huge Intuition?}
+    \end{center}
 \end{frame}
 
 \begin{frame}{Totaler kausaler Effekt}
